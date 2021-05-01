@@ -16,3 +16,6 @@ class FilaFinita:
         
         print('Erro, removendo de uma fila vazia')
         return None
+
+    def vazia(self):
+        return len(self.fila) == 0

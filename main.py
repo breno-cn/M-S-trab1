@@ -12,6 +12,7 @@ def main():
     proximaChegada = geradorChegada.gerarTempo()
 
     fila = FilaInfinita()
+    tempoProximoServico = 0
 
     while True:
         try:
@@ -25,16 +26,27 @@ def main():
 
                 proximaChegada = geradorChegada.gerarTempo()
 
-                # print(cliente)
+                print(cliente)
                 print(fila)
                 continue
+
+            if tempoProximoServico == 0 and not fila.vazia():
+                servido = fila.removeCliente()
+                print(f'servido = {servido}')
+                tempoProximoServico = servido.tmpEsperaServico
 
             for cliente in fila.fila:
                 cliente.avancaTempoFila()
 
-            print(f'{proximaChegada} unidades de tempo para proxima chegada')
+            if tempoProximoServico > 0:
+                tempoProximoServico -= 1
+
+            # print(f'{proximaChegada} unidades de tempo para proxima chegada')
+            # print(f'tempoProximoServico = {tempoProximoServico}')
             proximaChegada -= 1
             time.sleep(0.1)
+            print(fila)
+            print(tempoProximoServico)
 
         except KeyboardInterrupt:
             print('\n' + '=' * 100)
