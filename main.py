@@ -1,13 +1,18 @@
-from GeradorTempo.GeradorAleatorio import *
+from GeradorTempo.GeradorAleatorio import GeradorAleatorio
+from GeradorTempo.GeradorDeterministico import GeradorDeterministico
 from cliente.Cliente import Cliente
 from fila.FilaInfinita import FilaInfinita
 
 import time
 
 def main():
-    geradorChegada = GeradorAleatorio('tempo_chegada_teste.txt', 3)
-    geradorFila = GeradorAleatorio('tempo_chegada_teste.txt', 3)
-    geradorServico = GeradorAleatorio('tempo_chegada_servico.txt', 2)
+    # Teste para gerador Aleatorio
+    # geradorChegada = GeradorAleatorio('tempo_chegada_teste.txt', 3)
+    # geradorServico = GeradorAleatorio('tempo_chegada_servico.txt', 2)
+
+    # Teste para gerador Deterministico
+    geradorChegada = GeradorDeterministico(3)
+    geradorServico = GeradorDeterministico(2)
 
     proximaChegada = geradorChegada.gerarTempo()
 
