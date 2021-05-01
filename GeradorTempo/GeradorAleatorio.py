@@ -18,7 +18,7 @@ class GeradorAleatorio:
             self.dadosIniciais.sort()
             self.dadosIniciaisIntervalados = np.array_split(self.dadosIniciais, intervalos)
 
-            self.pontosMedios = [intervalo.mean() for intervalo in self.dadosIniciaisIntervalados]
+            self.pontosMedios = [int(intervalo.mean()) for intervalo in self.dadosIniciaisIntervalados]
 
             self.menor = self.dadosIniciais[0]
             self.maior = self.dadosIniciais[-1]
