@@ -1,5 +1,5 @@
 class Cliente:
-    def __init__(self, tmpEsperaFila, tmpEsperaServico=0):
+    def __init__(self, tmpEsperaFila, tmpEsperaServico):
         self.tmpEsperaFila = tmpEsperaFila
         self.tmpEsperaServico = tmpEsperaServico
 
@@ -8,3 +8,6 @@ class Cliente:
 
     def avancaTempoServico(self):
         self.tmpEsperaServico -= 1
+
+    def __str__(self):
+        return f'(tmpEsperaFila = {self.tmpEsperaFila}, tmpEsperaServico = {self.tmpEsperaServico})'
