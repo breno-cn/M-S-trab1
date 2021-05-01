@@ -23,15 +23,15 @@ class GeradorAleatorio:
             self.menor = self.dadosIniciais[0]
             self.maior = self.dadosIniciais[-1]
 
-            print(self.intervalos)
-            print(self.dadosIniciais)
-            print(self.dadosIniciaisIntervalados)
-            print(self.pontosMedios)
+            # print(self.intervalos)
+            # print(self.dadosIniciais)
+            # print(self.dadosIniciaisIntervalados)
+            # print(self.pontosMedios)
 
     def gerarTempo(self):
         # Gerar um numero aleatorio
         num = np.random.randint(low=self.menor, high=self.maior, size=1)[0]
-        print(f'numero sorteado: {num}')
+        # print(f'numero sorteado: {num}')
 
         # Verificar qual intervalo esse número pertence
         i = 0
