@@ -7,12 +7,12 @@ import time
 
 def main():
     # Teste para gerador Aleatorio
-    # geradorChegada = GeradorAleatorio('tempo_chegada_teste.txt', 3)
-    # geradorServico = GeradorAleatorio('tempo_chegada_servico.txt', 2)
+    geradorChegada = GeradorAleatorio('tempo_chegada_teste.txt', 3)
+    geradorServico = GeradorAleatorio('tempo_chegada_servico.txt', 2)
 
     # Teste para gerador Deterministico
-    geradorChegada = GeradorDeterministico(3)
-    geradorServico = GeradorDeterministico(2)
+    # geradorChegada = GeradorDeterministico(3)
+    # geradorServico = GeradorDeterministico(2)
 
     proximaChegada = geradorChegada.gerarTempo()
 
