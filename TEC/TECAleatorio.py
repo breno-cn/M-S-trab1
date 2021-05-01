@@ -2,7 +2,7 @@ import numpy as np
 
 class TECAleatorio:
 
-    # Recebe o caminho para um csv contendo dados iniciais
+    # Recebe o caminho para um arquivo texto contendo dados iniciais
     # que serão usados para o método Monte Carlo
     def __init__(self, filepath, intervalos):
         self.dadosIniciais = []
