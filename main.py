@@ -1,5 +1,6 @@
 from GeradorTempo.GeradorAleatorio import *
 from cliente.Cliente import Cliente
+from fila.FilaInfinita import FilaInfinita
 
 import time
 
@@ -10,19 +11,26 @@ def main():
 
     proximaChegada = geradorChegada.gerarTempo()
 
+    fila = FilaInfinita()
+
     while True:
         try:
             if proximaChegada == 0:
                 print('Novo cliente')
 
-                tempoFila = geradorFila.gerarTempo()
                 tempoServico = geradorServico.gerarTempo()
-                cliente = Cliente(tempoFila, tempoServico)
+                cliente = Cliente(tempoServico)
+
+                fila.addCliente(cliente)
 
                 proximaChegada = geradorChegada.gerarTempo()
 
-                print(cliente)
+                # print(cliente)
+                print(fila)
                 continue
+
+            for cliente in fila.fila:
+                cliente.avancaTempoFila()
 
             print(f'{proximaChegada} unidades de tempo para proxima chegada')
             proximaChegada -= 1

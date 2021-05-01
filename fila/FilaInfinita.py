@@ -12,3 +12,9 @@ class FilaInfinita:
         
         print('Erro, removendo de uma fila vazia')
         return None
+
+    def comeco(self):
+        return fila[0]
+
+    def __str__(self):
+        return self.fila.__str__()
