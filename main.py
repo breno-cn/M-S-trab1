@@ -1,11 +1,11 @@
-from TEC.TECAleatorio import *
+from GeradorTempo.GeradorAleatorio import *
 
 def main():
-    TEC = TECAleatorio('tempo_chegada_teste.txt', 2)
-    temp1 = TEC.gerarTempo()
-    temp2 = TEC.gerarTempo()
-    temp3 = TEC.gerarTempo()
-    temp4 = TEC.gerarTempo()
+    gerador = GeradorAleatorio('tempo_chegada_teste.txt', 2)
+    temp1 = gerador.gerarTempo()
+    temp2 = gerador.gerarTempo()
+    temp3 = gerador.gerarTempo()
+    temp4 = gerador.gerarTempo()
 
     print(temp1)
     print(temp2)

@@ -1,6 +1,6 @@
 import numpy as np
 
-class TECAleatorio:
+class GeradorAleatorio:
 
     # Recebe o caminho para um arquivo texto contendo dados iniciais
     # que serão usados para o método Monte Carlo
@@ -47,4 +47,6 @@ class TECAleatorio:
 
             i += 1
 
-        # return self.pontosMedios[-1]
+        # Isso não deve acontecer, mas caso não encontre nenhum intervalo
+        # retorna o ultimo
+        return self.pontosMedios[-1]

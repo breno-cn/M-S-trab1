@@ -1,4 +1,4 @@
-class TECDeterministico:
+class GeradorDeterministico:
     def __init__(self, intervalo):
         self.intervalo = intervalo
 
