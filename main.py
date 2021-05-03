@@ -12,8 +12,15 @@ import argparse
 
 def getArgs():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--tipo-fila')
-    parser.add_argument('--tipo-servico')
+    parser.add_argument('--tipo-fila', nargs='*')
+    parser.add_argument('--tipo-servico', nargs='*')
+
+#   Usados apenas para fila e servico aleatorio
+    parser.add_argument('-iFila')
+    parser.add_argument('-iServico')
+    # 
+    # parser.add_argument('--base-fila')
+    # parser.add_argument('--base-servico')
 
 #   Usados apenas para fila e servico deterministico
     parser.add_argument('--tempo-fila')
@@ -25,29 +32,45 @@ def getArgs():
 # TODO: opções de intervalos nos geradores aleatórios
 # Exemplos para rodar o programa: 
 #   python3 main.py --tipo-fila aleatorio --tipo-servico aleatorio
-#   python3 main.py --tipo-fila deterministico --tempo-fila 2 --tipo-servico deterministico --tempo-servico 1
+#   python3 main.py --tipo-fila aleatorio --tipo-servico aleatorio -iFila 3 -iServico 3
 
+
+def getGerador(args, tipo):
+    tipoGerador = args.tipo_fila[0] if tipo == 'fila' else args.tipo_servico[0]
+
+    if tipoGerador == 'aleatorio':
+        intervalos = int(args.iFila) if tipo == 'fila' else int(args.iServico)
+        return GeradorAleatorio(args.tipo_fila[1], intervalos) if tipo == 'fila' else GeradorAleatorio(args.tipo_servico[1], int(args.iServico))
+
+    if tipo == 'deterministico':
+        intervalo = int(args.tempo_fila) if tipo == 'fila' else int(args.tempo_servico)
+        return GeradorDeterministico(intervalo)
 
 def main():
     args = getArgs()
 
     # Declaração de objetos usados na simulação
-    geradorChegada = None
-    geradorServico = None
+    # geradorChegada = None
+    # geradorServico = None
 
-    tipo_fila = args.tipo_fila    
-    if tipo_fila == 'aleatorio':
-        geradorChegada = GeradorAleatorio('tempo_chegada_teste.txt', 3)
-    elif tipo_fila == 'deterministico':
-        intervalo = int(args.tempo_fila)
-        geradorChegada = GeradorDeterministico(intervalo)
+    # tipo_fila = args.tipo_fila    
+    # if tipo_fila[0] == 'aleatorio':
+    #     intervalos = int(args.iFila)
+    #     geradorChegada = GeradorAleatorio(args.tipo_fila[1], intervalos)
+    # elif tipo_fila[0] == 'deterministico':
+    #     intervalo = int(args.tempo_fila)
+    #     geradorChegada = GeradorDeterministico(intervalo)
 
-    tipo_servico = args.tipo_servico
-    if tipo_servico == 'aleatorio':
-        geradorServico = GeradorAleatorio('tempo_chegada_servico.txt', 3)
-    elif tipo_servico == 'deterministico':
-        intervalo = int(args.tempo_servico)
-        geradorServico = GeradorDeterministico(intervalo)
+    # tipo_servico = args.tipo_servico
+    # if tipo_servico[0] == 'aleatorio':
+    #     intervalos = int(args.iServico)
+    #     geradorServico = GeradorAleatorio(tipo_servico[1], intervalos)
+    # elif tipo_servico[0] == 'deterministico':
+    #     intervalo = int(args.tempo_servico)
+    #     geradorServico = GeradorDeterministico(intervalo)
+
+    geradorChegada = getGerador(args, 'fila')
+    geradorServico = getGerador(args, 'servico')
 
     proximaChegada = geradorChegada.gerarTempo()
 
