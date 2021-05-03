@@ -49,26 +49,6 @@ def getGerador(args, tipo):
 def main():
     args = getArgs()
 
-    # Declaração de objetos usados na simulação
-    # geradorChegada = None
-    # geradorServico = None
-
-    # tipo_fila = args.tipo_fila    
-    # if tipo_fila[0] == 'aleatorio':
-    #     intervalos = int(args.iFila)
-    #     geradorChegada = GeradorAleatorio(args.tipo_fila[1], intervalos)
-    # elif tipo_fila[0] == 'deterministico':
-    #     intervalo = int(args.tempo_fila)
-    #     geradorChegada = GeradorDeterministico(intervalo)
-
-    # tipo_servico = args.tipo_servico
-    # if tipo_servico[0] == 'aleatorio':
-    #     intervalos = int(args.iServico)
-    #     geradorServico = GeradorAleatorio(tipo_servico[1], intervalos)
-    # elif tipo_servico[0] == 'deterministico':
-    #     intervalo = int(args.tempo_servico)
-    #     geradorServico = GeradorDeterministico(intervalo)
-
     geradorChegada = getGerador(args, 'fila')
     geradorServico = getGerador(args, 'servico')
 
