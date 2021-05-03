@@ -19,6 +19,11 @@ def main():
     fila = FilaInfinita()
     tempoProximoServico = 0
 
+    # Variaveis usadas para extrair informações da simulação
+    ticks = 0
+    totalNumEntidadesFila = 0
+    tempoTotalEntidadesFila = 0
+
     while True:
         try:
             if proximaChegada == 0:
@@ -33,12 +38,18 @@ def main():
 
                 print(cliente)
                 print(fila)
+
+                totalNumEntidadesFila += 1
                 continue
 
             if tempoProximoServico == 0 and not fila.vazia():
+                ticks += 1
+
                 servido = fila.removeCliente()
                 print(f'servido = {servido}')
                 tempoProximoServico = servido.tmpEsperaServico
+
+                tempoTotalEntidadesFila += servido.tmpEsperaFila
 
             for cliente in fila.fila:
                 cliente.avancaTempoFila()
@@ -49,13 +60,17 @@ def main():
             # print(f'{proximaChegada} unidades de tempo para proxima chegada')
             # print(f'tempoProximoServico = {tempoProximoServico}')
             proximaChegada -= 1
-            time.sleep(0.1)
+            time.sleep(0.001)
             print(fila)
             print(tempoProximoServico)
 
         except KeyboardInterrupt:
             print('\n' + '=' * 100)
             print('Encerrando simulacao...')
+
+            print(f'Media de entidades na fila: {totalNumEntidadesFila / ticks}')
+
+            print(f'Tempo medio de espera das entidaeds na fila: {tempoTotalEntidadesFila / ticks}')
             return
 
 
