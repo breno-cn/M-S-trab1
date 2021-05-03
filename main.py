@@ -9,6 +9,7 @@ import argparse
 # TODO: verificar onde por o calculo do tick
 #       procurar alguma interface gráfica ou algum print bonitim de terminal
 #       alterar parametros
+#       testar fila finita e fazer tratamento quando não couber mais clientes nela
 
 def getArgs():
     parser = argparse.ArgumentParser()
@@ -111,11 +112,13 @@ def main():
 
             print(f'Media de entidades na fila: {totalNumEntidadesFila / ticks}')
 
-            print(f'Tempo medio de espera das entidades na fila: {tempoTotalEntidadesFila / ticks}')
+            tempoMedioEntidadesFila = tempoTotalEntidadesFila / ticks
+            print(f'Tempo medio de espera das entidades na fila: {tempoMedioEntidadesFila}')
 
-            print(f'Tempo medio de ocupacao dos servidores: {tempoTotalOcupacaoServidores / ticks}')
+            tempoMedioOcupacaoServidores = tempoTotalOcupacaoServidores / ticks
+            print(f'Tempo medio de ocupacao dos servidores: {tempoMedioOcupacaoServidores}')
 
-            print(f'Tempo medio no sistema: {(tempoTotalEntidadesFila / ticks) + (tempoTotalOcupacaoServidores / ticks)}')
+            print(f'Tempo medio no sistema: {tempoMedioEntidadesFila + tempoMedioOcupacaoServidores}')
 
             return
 
