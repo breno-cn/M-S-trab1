@@ -18,14 +18,6 @@ def getArgs():
 #   Usados apenas para fila e servico deterministico
     parser.add_argument('--tempo-fila')
     parser.add_argument('--tempo-servico')
-    # parser.add_argument('--tempo-espera')
-    
-    
-    # args = parser.parse_args()
-    # print(args.tipo_fila)
-    # print(args.tipo_servico)
-    # print(args.tempo_fila)
-    # print(args.tempo_servico)
 
     return parser.parse_args()
 
@@ -56,14 +48,6 @@ def main():
     elif tipo_servico == 'deterministico':
         intervalo = int(args.tempo_servico)
         geradorServico = GeradorDeterministico(intervalo)
-
-    # Teste para gerador Aleatorio
-    # geradorChegada = GeradorAleatorio('tempo_chegada_teste.txt', 3)
-    # geradorServico = GeradorAleatorio('tempo_chegada_servico.txt', 3)
-
-    # Teste para gerador Deterministico
-    # geradorChegada = GeradorDeterministico(3)
-    # geradorServico = GeradorDeterministico(2)
 
     proximaChegada = geradorChegada.gerarTempo()
 
