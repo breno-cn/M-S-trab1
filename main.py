@@ -77,6 +77,8 @@ def main():
 
             print(f'Tempo medio de ocupacao dos servidores: {tempoTotalOcupacaoServidores / ticks}')
 
+            print(f'Tempo medio no sistema: {(tempoTotalEntidadesFila / ticks) + (tempoTotalOcupacaoServidores / ticks)}')
+
             return
 
 
