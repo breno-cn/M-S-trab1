@@ -31,6 +31,11 @@ def getArgs():
 
 
 # TODO: opções de intervalos nos geradores aleatórios
+# Exemplos para rodar o programa: 
+#   python3 main.py --tipo-fila aleatorio --tipo-servico aleatorio
+#   python3 main.py --tipo-fila deterministico --tempo-fila 2 --tipo-servico deterministico --tempo-servico 1
+
+
 def main():
     args = getArgs()
 
@@ -109,7 +114,7 @@ def main():
             # print(f'{proximaChegada} unidades de tempo para proxima chegada')
             # print(f'tempoProximoServico = {tempoProximoServico}')
             proximaChegada -= 1
-            time.sleep(0.001)
+            time.sleep(0.1)
             print(fila)
             print(tempoProximoServico)
 
