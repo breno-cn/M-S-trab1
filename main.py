@@ -29,12 +29,32 @@ def getArgs():
 
     return parser.parse_args()
 
+
+# TODO: opções de intervalos nos geradores aleatórios
 def main():
     args = getArgs()
 
+    # Declaração de objetos usados na simulação
+    geradorChegada = None
+    geradorServico = None
+
+    tipo_fila = args.tipo_fila    
+    if tipo_fila == 'aleatorio':
+        geradorChegada = GeradorAleatorio('tempo_chegada_teste.txt', 3)
+    elif tipo_fila == 'deterministico':
+        intervalo = int(args.tempo_fila)
+        geradorChegada = GeradorDeterministico(intervalo)
+
+    tipo_servico = args.tipo_servico
+    if tipo_servico == 'aleatorio':
+        geradorServico = GeradorAleatorio('tempo_chegada_servico.txt', 3)
+    elif tipo_servico == 'deterministico':
+        intervalo = int(args.tempo_servico)
+        geradorServico = GeradorDeterministico(intervalo)
+
     # Teste para gerador Aleatorio
-    geradorChegada = GeradorAleatorio('tempo_chegada_teste.txt', 3)
-    geradorServico = GeradorAleatorio('tempo_chegada_servico.txt', 3)
+    # geradorChegada = GeradorAleatorio('tempo_chegada_teste.txt', 3)
+    # geradorServico = GeradorAleatorio('tempo_chegada_servico.txt', 3)
 
     # Teste para gerador Deterministico
     # geradorChegada = GeradorDeterministico(3)
