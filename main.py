@@ -23,6 +23,7 @@ def main():
     ticks = 0
     totalNumEntidadesFila = 0
     tempoTotalEntidadesFila = 0
+    tempoTotalOcupacaoServidores = 0
 
     while True:
         try:
@@ -51,6 +52,8 @@ def main():
 
                 tempoTotalEntidadesFila += servido.tmpEsperaFila
 
+                tempoTotalOcupacaoServidores += servido.tmpEsperaServico
+
             for cliente in fila.fila:
                 cliente.avancaTempoFila()
 
@@ -70,7 +73,10 @@ def main():
 
             print(f'Media de entidades na fila: {totalNumEntidadesFila / ticks}')
 
-            print(f'Tempo medio de espera das entidaeds na fila: {tempoTotalEntidadesFila / ticks}')
+            print(f'Tempo medio de espera das entidades na fila: {tempoTotalEntidadesFila / ticks}')
+
+            print(f'Tempo medio de ocupacao dos servidores: {tempoTotalOcupacaoServidores / ticks}')
+
             return
 
 
