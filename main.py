@@ -4,8 +4,34 @@ from cliente.Cliente import Cliente
 from fila.FilaInfinita import FilaInfinita
 
 import time
+import argparse
+
+# TODO: verificar onde por o calculo do tick
+#       procurar alguma interface gráfica ou algum print bonitim de terminal
+#       alterar parametros
+
+def getArgs():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--tipo-fila')
+    parser.add_argument('--tipo-servico')
+
+#   Usados apenas para fila e servico deterministico
+    parser.add_argument('--tempo-fila')
+    parser.add_argument('--tempo-servico')
+    # parser.add_argument('--tempo-espera')
+    
+    
+    # args = parser.parse_args()
+    # print(args.tipo_fila)
+    # print(args.tipo_servico)
+    # print(args.tempo_fila)
+    # print(args.tempo_servico)
+
+    return parser.parse_args()
 
 def main():
+    args = getArgs()
+
     # Teste para gerador Aleatorio
     geradorChegada = GeradorAleatorio('tempo_chegada_teste.txt', 3)
     geradorServico = GeradorAleatorio('tempo_chegada_servico.txt', 3)
