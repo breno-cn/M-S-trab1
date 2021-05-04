@@ -47,7 +47,7 @@ def getGerador(args, tipo):
         return GeradorAleatorio(args.tipo_fila[1], intervalos) if tipo == 'fila' else GeradorAleatorio(args.tipo_servico[1], int(args.iServico))
 
     if tipoGerador == 'deterministico':
-        intervalo = int(args.tempo_fila) if tipo == 'fila' else int(args.tempo_servico)
+        intervalo = int(args.tipo_fila[1]) if tipo == 'fila' else int(args.tipo_servico[1])
         return GeradorDeterministico(intervalo)
 
 def getFila(args):
@@ -55,7 +55,7 @@ def getFila(args):
     if tamFila == 'infinita':
         return FilaInfinita()
     
-    maxClientes = args.tam_fila[1]
+    maxClientes = int(args.tam_fila[1])
     return FilaFinita(maxClientes)
 
 def main():

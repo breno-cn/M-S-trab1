@@ -4,7 +4,7 @@ class FilaFinita:
         self.maxClientes = maxClientes
 
     def addCliente(self, cliente):
-        if len(self.fila) > maxClientes:
+        if len(self.fila) > self.maxClientes:
             return False
 
         self.fila.append(cliente)
@@ -19,3 +19,6 @@ class FilaFinita:
 
     def vazia(self):
         return len(self.fila) == 0
+
+    def __str__(self):
+        return self.fila.__str__()
