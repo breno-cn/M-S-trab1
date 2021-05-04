@@ -43,7 +43,7 @@ def getGerador(args, tipo):
         intervalos = int(args.iFila) if tipo == 'fila' else int(args.iServico)
         return GeradorAleatorio(args.tipo_fila[1], intervalos) if tipo == 'fila' else GeradorAleatorio(args.tipo_servico[1], int(args.iServico))
 
-    if tipo == 'deterministico':
+    if tipoGerador == 'deterministico':
         intervalo = int(args.tempo_fila) if tipo == 'fila' else int(args.tempo_servico)
         return GeradorDeterministico(intervalo)
 
