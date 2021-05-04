@@ -35,7 +35,7 @@ def getArgs():
 
 # TODO: opções de intervalos nos geradores aleatórios
 # Exemplos para rodar o programa: 
-#   python3 main.py --tipo-fila deterministico 3 --tipo-servico deterministico 3
+#   python3 main.py --tipo-fila deterministico 3 --tipo-servico deterministico 3 --tam-fila finita 10
 #   python3 main.py --tipo-fila aleatorio tempo_chegada_teste.txt --tipo-servico aleatorio tempo_chegada_servico.txt -iFila 3 -iServico 3 --tam-fila infinita
 
 
