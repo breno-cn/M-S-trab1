@@ -83,7 +83,10 @@ def main():
                 tempoServico = geradorServico.gerarTempo()
                 cliente = Cliente(tempoServico)
 
-                fila.addCliente(cliente)
+                if fila.addCliente(cliente):
+                    print(f'cliente {cliente} adicionado com sucesso')
+                else:
+                    print(f'erro ao inserir {cliente} na fila')
 
                 proximaChegada = geradorChegada.gerarTempo()
 
