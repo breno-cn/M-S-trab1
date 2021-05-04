@@ -2,6 +2,7 @@ from GeradorTempo.GeradorAleatorio import GeradorAleatorio
 from GeradorTempo.GeradorDeterministico import GeradorDeterministico
 from cliente.Cliente import Cliente
 from fila.FilaInfinita import FilaInfinita
+from fila.FilaFinita import FilaFinita
 
 import time
 import argparse
@@ -15,6 +16,8 @@ def getArgs():
     parser = argparse.ArgumentParser()
     parser.add_argument('--tipo-fila', nargs='*')
     parser.add_argument('--tipo-servico', nargs='*')
+
+    parser.add_argument('--tam-fila', nargs='*')
 
 #   Usados apenas para fila e servico aleatorio
     parser.add_argument('-iFila')
@@ -33,7 +36,7 @@ def getArgs():
 # TODO: opções de intervalos nos geradores aleatórios
 # Exemplos para rodar o programa: 
 #   python3 main.py --tipo-fila deterministico 3 --tipo-servico deterministico 3
-#   python3 main.py --tipo-fila aleatorio tempo_chegada_teste.txt --tipo-servico aleatorio tempo_chegada_servico.txt -iFila 3 -iServico 3
+#   python3 main.py --tipo-fila aleatorio tempo_chegada_teste.txt --tipo-servico aleatorio tempo_chegada_servico.txt -iFila 3 -iServico 3 --tam-fila infinita
 
 
 def getGerador(args, tipo):
@@ -47,6 +50,14 @@ def getGerador(args, tipo):
         intervalo = int(args.tempo_fila) if tipo == 'fila' else int(args.tempo_servico)
         return GeradorDeterministico(intervalo)
 
+def getFila(args):
+    tamFila = args.tam_fila[0]
+    if tamFila == 'infinita':
+        return FilaInfinita()
+    
+    maxClientes = args.tam_fila[1]
+    return FilaFinita(maxClientes)
+
 def main():
     args = getArgs()
 
@@ -55,7 +66,7 @@ def main():
 
     proximaChegada = geradorChegada.gerarTempo()
 
-    fila = FilaInfinita()
+    fila = getFila(args)
     tempoProximoServico = 0
 
     # Variaveis usadas para extrair informações da simulação

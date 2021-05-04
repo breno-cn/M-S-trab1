@@ -1,10 +1,10 @@
 class FilaFinita:
-    def __init__(self, max):
+    def __init__(self, maxClientes):
         self.fila = []
-        self.max = max
+        self.maxClientes = maxClientes
 
     def addCliente(self, cliente):
-        if len(self.fila) > max:
+        if len(self.fila) > maxClientes:
             return False
 
         self.fila.append(cliente)
