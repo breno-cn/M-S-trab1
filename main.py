@@ -85,6 +85,7 @@ def main():
 
                 if fila.addCliente(cliente):
                     print(f'cliente {cliente} adicionado com sucesso')
+                    totalNumEntidadesFila += 1
                 else:
                     print(f'erro ao inserir {cliente} na fila')
 
@@ -93,7 +94,6 @@ def main():
                 print(cliente)
                 print(fila)
 
-                totalNumEntidadesFila += 1
                 continue
 
             if tempoProximoServico == 0 and not fila.vazia():
