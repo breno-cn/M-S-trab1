@@ -12,6 +12,15 @@ import argparse
 #       alterar parametros
 #       testar fila finita e fazer tratamento quando não couber mais clientes nela
 
+# TEMPORÁRIO
+def gotoxy(x,y):
+    print ("%c[%d;%df" % (0x1B, y, x), end='')
+
+def printTela(totalFila, tempoServico):
+    gotoxy(0, 0)
+    print(f'clientes na fila: {totalFila}')
+    print(f'tempo de servico restante: {tempoServico}')
+
 def getArgs():
     parser = argparse.ArgumentParser()
     parser.add_argument('--tipo-fila', nargs='*')
@@ -84,15 +93,15 @@ def main():
                 cliente = Cliente(tempoServico)
 
                 if fila.addCliente(cliente):
-                    print(f'cliente {cliente} adicionado com sucesso')
+                    # print(f'cliente {cliente} adicionado com sucesso')
                     totalNumEntidadesFila += 1
                 else:
                     print(f'erro ao inserir {cliente} na fila')
 
                 proximaChegada = geradorChegada.gerarTempo()
 
-                print(cliente)
-                print(fila)
+                # print(cliente)
+                # print(fila)
 
                 continue
 
@@ -100,7 +109,7 @@ def main():
                 ticks += 1
 
                 servido = fila.removeCliente()
-                print(f'servido = {servido}')
+                # print(f'servido = {servido}')
                 tempoProximoServico = servido.tmpEsperaServico
 
                 tempoTotalEntidadesFila += servido.tmpEsperaFila
@@ -117,10 +126,13 @@ def main():
             # print(f'tempoProximoServico = {tempoProximoServico}')
             proximaChegada -= 1
             time.sleep(0.1)
-            print(fila)
-            print(tempoProximoServico)
+            # print(fila)
+            # print(tempoProximoServico)
+            printTela(len(fila.fila), tempoProximoServico)
 
         except KeyboardInterrupt:
+            gotoxy(0, 5)
+            
             print('\n' + '=' * 100)
             print('Encerrando simulacao...')
 
