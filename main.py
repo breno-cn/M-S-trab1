@@ -17,9 +17,16 @@ def gotoxy(x,y):
     print ("%c[%d;%df" % (0x1B, y, x), end='')
 
 def printTela(totalFila, tempoServico):
+    for i in range(10):
+        print(' ')
+
     gotoxy(0, 0)
     print(f'clientes na fila: {totalFila}')
+    print('')
+    print('')
     print(f'tempo de servico restante: {tempoServico}')
+    print('')
+    print('')
 
 def getArgs():
     parser = argparse.ArgumentParser()
@@ -84,6 +91,9 @@ def main():
     tempoTotalEntidadesFila = 0
     tempoTotalOcupacaoServidores = 0
 
+    gotoxy(0, 0)
+    print(' ' * 500)
+
     while True:
         try:
             if proximaChegada == 0:
@@ -110,6 +120,9 @@ def main():
 
                 servido = fila.removeCliente()
                 # print(f'servido = {servido}')
+                # print('-' * 100)
+                # print(servido.tmpEsperaServico)
+                # print('-' * 100)
                 tempoProximoServico = servido.tmpEsperaServico
 
                 tempoTotalEntidadesFila += servido.tmpEsperaFila
