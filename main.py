@@ -22,11 +22,11 @@ def printTela(totalFila, tempoServico):
 
     gotoxy(0, 0)
     print(f'clientes na fila: {totalFila}')
-    print('')
-    print('')
+    # print('')
+    # print('')
     print(f'tempo de servico restante: {tempoServico}')
-    print('')
-    print('')
+    # print('')
+    # print('')
 
 def getArgs():
     parser = argparse.ArgumentParser()
@@ -97,7 +97,7 @@ def main():
     while True:
         try:
             if proximaChegada == 0:
-                print('Novo cliente')
+                # print('Novo cliente')
 
                 tempoServico = geradorServico.gerarTempo()
                 cliente = Cliente(tempoServico)
