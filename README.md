@@ -14,7 +14,7 @@ Dependências funcionais do programa, como o numpy, podem ser adquiridas com o s
 pip3 install -r requirements.txt
 ```
 
-## Como usar
+# Como usar
 
 O usuário pode controlar dois aspectos da simulação:
 - Tempo entre chegada de clientes
@@ -31,7 +31,7 @@ O tamanho da fila pode ser:
 
 Para tempo entre chegada de clientes, usa-se o parâmetro ```--tipo-fila```, caso aleatório, deve-se informar a base de dados, para determinístico, o tempo, em segundos, entre as chegadas na fila.
 
-Exemplos:
+## Exemplo
 ```console
 --tipo-fila aleatorio base_fila.txt
 --tipo-fila deterministico 3
@@ -39,7 +39,7 @@ Exemplos:
 
 Para tempo de serviço, o mesmo citadoa acima vale, mas com o parâmetro ```--tipo-servico```.
 
-Exemplos:
+## Exemplo
 ```console
 --tipo-servico aleatorio base_servico.txt
 --tipo-servico deterministico 5
@@ -47,13 +47,13 @@ Exemplos:
 
 O tipo de fila deve ser informada pelo parâmetro ```--tam-fila```. Se for finita, deve ser informada o tamanho dela.
 
-Exemplo:
+## Exemplo
 ```console
 --tam-fila finita 10
 --tam-fila infinita
 ```
 
-## Exemplos de simulações
+# Exemplos de simulações
 
 Tempo de chegada de clientes aleatório, tempo de serviço determinístico de 5 segundos, fila infinita.
 ```console
