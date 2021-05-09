@@ -7,12 +7,6 @@ from fila.FilaFinita import FilaFinita
 import time
 import argparse
 
-# TODO: verificar onde por o calculo do tick
-#       procurar alguma interface gráfica ou algum print bonitim de terminal
-#       alterar parametros
-#       testar fila finita e fazer tratamento quando não couber mais clientes nela
-
-# TEMPORÁRIO
 def gotoxy(x,y):
     print ("%c[%d;%df" % (0x1B, y, x), end='')
 
@@ -22,11 +16,7 @@ def printTela(totalFila, tempoServico):
 
     gotoxy(0, 0)
     print(f'clientes na fila: {totalFila}')
-    # print('')
-    # print('')
     print(f'tempo de servico restante: {tempoServico}')
-    # print('')
-    # print('')
 
 def getArgs():
     parser = argparse.ArgumentParser()
@@ -38,21 +28,12 @@ def getArgs():
 #   Usados apenas para fila e servico aleatorio
     parser.add_argument('-iFila')
     parser.add_argument('-iServico')
-    # 
-    # parser.add_argument('--base-fila')
-    # parser.add_argument('--base-servico')
 
 #   Usados apenas para fila e servico deterministico
     parser.add_argument('--tempo-fila')
     parser.add_argument('--tempo-servico')
 
     return parser.parse_args()
-
-
-# TODO: opções de intervalos nos geradores aleatórios
-# Exemplos para rodar o programa: 
-#   python3 main.py --tipo-fila deterministico 3 --tipo-servico deterministico 3 --tam-fila finita 10
-#   python3 main.py --tipo-fila aleatorio tempo_chegada_teste.txt --tipo-servico aleatorio tempo_chegada_servico.txt -iFila 3 -iServico 3 --tam-fila infinita
 
 
 def getGerador(args, tipo):
@@ -97,21 +78,16 @@ def main():
     while True:
         try:
             if proximaChegada == 0:
-                # print('Novo cliente')
 
                 tempoServico = geradorServico.gerarTempo()
                 cliente = Cliente(tempoServico)
 
                 if fila.addCliente(cliente):
-                    # print(f'cliente {cliente} adicionado com sucesso')
                     totalNumEntidadesFila += 1
                 else:
                     print(f'erro ao inserir {cliente} na fila')
 
                 proximaChegada = geradorChegada.gerarTempo()
-
-                # print(cliente)
-                # print(fila)
 
                 continue
 
@@ -119,10 +95,6 @@ def main():
                 ticks += 1
 
                 servido = fila.removeCliente()
-                # print(f'servido = {servido}')
-                # print('-' * 100)
-                # print(servido.tmpEsperaServico)
-                # print('-' * 100)
                 tempoProximoServico = servido.tmpEsperaServico
 
                 tempoTotalEntidadesFila += servido.tmpEsperaFila
@@ -135,12 +107,8 @@ def main():
             if tempoProximoServico > 0:
                 tempoProximoServico -= 1
 
-            # print(f'{proximaChegada} unidades de tempo para proxima chegada')
-            # print(f'tempoProximoServico = {tempoProximoServico}')
             proximaChegada -= 1
             time.sleep(0.1)
-            # print(fila)
-            # print(tempoProximoServico)
             printTela(len(fila.fila), tempoProximoServico)
 
         except KeyboardInterrupt:

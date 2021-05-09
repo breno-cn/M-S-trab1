@@ -66,6 +66,8 @@ Tempo de chegada determinístico de 5 segundos, tempo de serviço aleatório bas
 python3 main.py --tipo-fila deterministico 5 --tipo-servico aleatorio base_servico.txt --tam-fila finita 10
 ```
 
+Há nos arquivos entregues, duas bases de dados de exmplo que podem ser usadas.
+
 ## Encerrando a Simulação
 A simulação é encerrada ao programa receber um sinal de ```KeyboardInterrupt```, no ambiente **Linux**, após ```CTRL-C``` ser pressionado no terminal.
 
