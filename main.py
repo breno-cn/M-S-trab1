@@ -26,10 +26,6 @@ def getArgs():
 
     parser.add_argument('--tam-fila', nargs='*')
 
-#   Usados apenas para fila e servico aleatorio
-    parser.add_argument('-iFila')
-    parser.add_argument('-iServico')
-
 #   Usados apenas para fila e servico deterministico
     parser.add_argument('--tempo-fila')
     parser.add_argument('--tempo-servico')
