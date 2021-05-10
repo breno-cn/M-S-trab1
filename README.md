@@ -29,11 +29,11 @@ O tamanho da fila pode ser:
 - Finita
 - Infinita
 
-Para tempo entre chegada de clientes, usa-se o parâmetro ```--tipo-fila```, caso aleatório, deve-se informar a base de dados, para determinístico, o tempo, em segundos, entre as chegadas na fila.
+Para tempo entre chegada de clientes, usa-se o parâmetro ```--tipo-fila```, caso aleatório, deve-se informar a base de dados, para determinístico, o tempo, em segundos, entre as chegadas na fila. No case de fila ou serviço aleatória, deve-se informar a quantidade de intervalos que serão utilizadas pelo método monte carlo
 
 ## Exemplo
 ```console
---tipo-fila aleatorio base_fila.txt
+--tipo-fila aleatorio base_fila.txt 3
 --tipo-fila deterministico 3
 ```
 
@@ -41,7 +41,7 @@ Para tempo de serviço, o mesmo citadoa acima vale, mas com o parâmetro ```--ti
 
 ## Exemplo
 ```console
---tipo-servico aleatorio base_servico.txt
+--tipo-servico aleatorio base_servico.txt 3
 --tipo-servico deterministico 5
 ```
 
@@ -55,15 +55,15 @@ O tipo de fila deve ser informada pelo parâmetro ```--tam-fila```. Se for finit
 
 # Exemplos de simulações
 
-Tempo de chegada de clientes aleatório, tempo de serviço determinístico de 5 segundos, fila infinita.
+Tempo de chegada de clientes aleatório com 4 intervalos para monte carlo, tempo de serviço determinístico de 5 segundos, fila infinita.
 ```console
-python3 main.py --tipo-fila aleatorio base_fila.txt --tipo-servico deterministico 5 --tam-fila infinita
+python3 main.py --tipo-fila aleatorio base_fila.txt 4 --tipo-servico deterministico 5 --tam-fila infinita
 ```
 
 
-Tempo de chegada determinístico de 5 segundos, tempo de serviço aleatório baseado em base_servico.txt, fila finita de 10 lugares
+Tempo de chegada determinístico de 5 segundos, tempo de serviço aleatório baseado em base_servico.txt com 3 intervalos de monte carlo, fila finita de 10 lugares
 ```console
-python3 main.py --tipo-fila deterministico 5 --tipo-servico aleatorio base_servico.txt --tam-fila finita 10
+python3 main.py --tipo-fila deterministico 5 --tipo-servico aleatorio base_servico.txt 3 --tam-fila finita 10
 ```
 
 Há nos arquivos entregues, duas bases de dados de exmplo que podem ser usadas.
