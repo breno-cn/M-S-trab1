@@ -10,13 +10,14 @@ import argparse
 def gotoxy(x,y):
     print ("%c[%d;%df" % (0x1B, y, x), end='')
 
-def printTela(totalFila, tempoServico):
+def printTela(totalFila, tempoServico, proximaChegada):
     for i in range(10):
         print(' ')
 
     gotoxy(0, 0)
     print(f'clientes na fila: {totalFila}')
     print(f'tempo de servico restante: {tempoServico}')
+    print(f'tempo para proxima chegada: {proximaChegada}')
 
 def getArgs():
     parser = argparse.ArgumentParser()
@@ -69,6 +70,7 @@ def main():
 
     # Variaveis usadas para extrair informações da simulação
     ticks = 0
+    ticksServico = 0
     totalNumEntidadesFila = 0
     tempoTotalEntidadesFila = 0
     tempoTotalOcupacaoServidores = 0
@@ -93,7 +95,7 @@ def main():
                 continue
 
             if tempoProximoServico == 0 and not fila.vazia():
-                ticks += 1
+                ticksServico += 1
 
                 servido = fila.removeCliente()
                 tempoProximoServico = servido.tmpEsperaServico
@@ -110,7 +112,8 @@ def main():
 
             proximaChegada -= 1
             time.sleep(0.1)
-            printTela(len(fila.fila), tempoProximoServico)
+            printTela(len(fila.fila), tempoProximoServico, proximaChegada)
+            ticks += 1
 
         except KeyboardInterrupt:
             gotoxy(0, 5)
@@ -123,7 +126,7 @@ def main():
             tempoMedioEntidadesFila = tempoTotalEntidadesFila / ticks
             print(f'Tempo medio de espera das entidades na fila: {tempoMedioEntidadesFila}')
 
-            tempoMedioOcupacaoServidores = tempoTotalOcupacaoServidores / ticks
+            tempoMedioOcupacaoServidores = tempoTotalOcupacaoServidores / ticksServico
             print(f'Tempo medio de ocupacao dos servidores: {tempoMedioOcupacaoServidores}')
 
             print(f'Tempo medio no sistema: {tempoMedioEntidadesFila + tempoMedioOcupacaoServidores}')
