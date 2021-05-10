@@ -38,7 +38,6 @@ def getArgs():
 
 def getGerador(args, tipo):
     tipoGerador = args.tipo_fila[0] if tipo == 'fila' else args.tipo_servico[0]
-    print(f'args {args}')
 
     if tipoGerador == 'aleatorio':
         # intervalos = int(args.tipo_fila[0]) if tipo == 'fila' else int(args.tipo_servico[0])
