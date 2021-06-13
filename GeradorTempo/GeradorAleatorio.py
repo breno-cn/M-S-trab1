@@ -2,8 +2,6 @@ import numpy as np
 
 class GeradorAleatorio:
 
-    # Recebe o caminho para um arquivo texto contendo dados iniciais
-    # que serão usados para o método Monte Carlo
     def __init__(self, B, intervalos, n):
         self.dadosIniciais = []
         self.dadosIniciaisIntervalados = []
@@ -26,16 +24,6 @@ class GeradorAleatorio:
         print(self.pontosMedios)
         print(self.dadosIniciaisIntervalados)
 
-        # with open(filepath) as dados:
-        #     linhas = dados.read().splitlines()
-        #     self.dadosIniciais = np.array(list(map(int, linhas)))
-        #     self.dadosIniciais.sort()
-        #     self.dadosIniciaisIntervalados = np.array_split(self.dadosIniciais, intervalos)
-
-        #     self.pontosMedios = [int(intervalo.mean()) for intervalo in self.dadosIniciaisIntervalados]
-
-        #     self.menor = self.dadosIniciais[0]
-        #     self.maior = self.dadosIniciais[-1]
 
     def gerarTempo(self):
         # Gerar um numero aleatorio
