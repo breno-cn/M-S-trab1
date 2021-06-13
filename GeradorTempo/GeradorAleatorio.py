@@ -4,7 +4,7 @@ class GeradorAleatorio:
 
     # Recebe o caminho para um arquivo texto contendo dados iniciais
     # que serão usados para o método Monte Carlo
-    def __init__(self, filepath, intervalos, n):
+    def __init__(self, B, intervalos, n):
         self.dadosIniciais = []
         self.dadosIniciaisIntervalados = []
         self.intervalos = intervalos
@@ -12,7 +12,7 @@ class GeradorAleatorio:
         self.menor = 0
         self.maior = 0
 
-        distribuicao = np.random.exponential(scale=5, size=n)
+        distribuicao = np.random.exponential(scale=B, size=n)
         self.dadosIniciais = np.array(list(map(int, distribuicao)))
         self.dadosIniciais.sort()
         self.dadosIniciaisIntervalados = np.array_split(self.dadosIniciais, intervalos)
