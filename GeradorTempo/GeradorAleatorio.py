@@ -4,7 +4,7 @@ class GeradorAleatorio:
 
     # Recebe o caminho para um arquivo texto contendo dados iniciais
     # que serão usados para o método Monte Carlo
-    def __init__(self, filepath, intervalos):
+    def __init__(self, filepath, intervalos, n):
         self.dadosIniciais = []
         self.dadosIniciaisIntervalados = []
         self.intervalos = intervalos
@@ -12,16 +12,30 @@ class GeradorAleatorio:
         self.menor = 0
         self.maior = 0
 
-        with open(filepath) as dados:
-            linhas = dados.read().splitlines()
-            self.dadosIniciais = np.array(list(map(int, linhas)))
-            self.dadosIniciais.sort()
-            self.dadosIniciaisIntervalados = np.array_split(self.dadosIniciais, intervalos)
+        distribuicao = np.random.exponential(scale=5, size=n)
+        self.dadosIniciais = np.array(list(map(int, distribuicao)))
+        self.dadosIniciais.sort()
+        self.dadosIniciaisIntervalados = np.array_split(self.dadosIniciais, intervalos)
 
-            self.pontosMedios = [int(intervalo.mean()) for intervalo in self.dadosIniciaisIntervalados]
+        self.pontosMedios = [int(intervalo.mean()) for intervalo in self.dadosIniciaisIntervalados]
 
-            self.menor = self.dadosIniciais[0]
-            self.maior = self.dadosIniciais[-1]
+        self.menor = self.dadosIniciais[0]
+        self.maior = self.dadosIniciais[-1]
+
+        print(self.dadosIniciais)
+        print(self.pontosMedios)
+        print(self.dadosIniciaisIntervalados)
+
+        # with open(filepath) as dados:
+        #     linhas = dados.read().splitlines()
+        #     self.dadosIniciais = np.array(list(map(int, linhas)))
+        #     self.dadosIniciais.sort()
+        #     self.dadosIniciaisIntervalados = np.array_split(self.dadosIniciais, intervalos)
+
+        #     self.pontosMedios = [int(intervalo.mean()) for intervalo in self.dadosIniciaisIntervalados]
+
+        #     self.menor = self.dadosIniciais[0]
+        #     self.maior = self.dadosIniciais[-1]
 
     def gerarTempo(self):
         # Gerar um numero aleatorio

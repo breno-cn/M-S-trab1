@@ -40,7 +40,8 @@ def getGerador(args, tipo):
     if tipoGerador == 'aleatorio':
         # intervalos = int(args.tipo_fila[0]) if tipo == 'fila' else int(args.tipo_servico[0])
         intervalos = int(args.tipo_fila[2]) if tipo == 'fila' else int(args.tipo_servico[2])
-        return GeradorAleatorio(args.tipo_fila[1], intervalos) if tipo == 'fila' else GeradorAleatorio(args.tipo_servico[1], intervalos)
+        n = int(args.tipo_fila[3]) if tipo == 'fila' else int(args.tipo_servico[3])
+        return GeradorAleatorio(args.tipo_fila[1], intervalos) if tipo == 'fila' else GeradorAleatorio(args.tipo_servico[1], intervalos, n)
 
     if tipoGerador == 'deterministico':
         intervalo = int(args.tipo_fila[1]) if tipo == 'fila' else int(args.tipo_servico[1])
@@ -61,6 +62,8 @@ def main():
     geradorServico = getGerador(args, 'servico')
 
     proximaChegada = geradorChegada.gerarTempo()
+
+    # return
 
     fila = getFila(args)
     temposProximosServicos = [0, 0]
