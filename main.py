@@ -62,7 +62,7 @@ def main():
     proximaChegada = geradorChegada.gerarTempo()
 
     fila = getFila(args)
-    tempoProximoServico = 0
+    temposProximosServicos = [0, 0]
 
     # Variaveis usadas para extrair informações da simulação
     ticks = 0
@@ -90,21 +90,25 @@ def main():
 
                 continue
 
-            if tempoProximoServico == 0 and not fila.vazia():
-                ticksServico += 1
+            for tempoProximoServico in temposProximosServicos:
+                if tempoProximoServico == 0 and not fila.vazia():
+                    ticksServico += 1
 
-                servido = fila.removeCliente()
-                tempoProximoServico = servido.tmpEsperaServico
+                    servido = fila.removeCliente()
+                    tempoProximoServico = servido.tmpEsperaServico
 
-                tempoTotalEntidadesFila += servido.tmpEsperaFila
+                    tempoTotalEntidadesFila += servido.tmpEsperaFila
 
-                tempoTotalOcupacaoServidores += servido.tmpEsperaServico
+                    tempoTotalOcupacaoServidores += servido.tmpEsperaServico
 
             for cliente in fila.fila:
                 cliente.avancaTempoFila()
 
-            if tempoProximoServico > 0:
-                tempoProximoServico -= 1
+            i = 0
+            for tempoProximoServico in temposProximosServicos:
+                if tempoProximoServico > 0:
+                    temposProximosServicos[i] -= 1
+                i += 1
 
             proximaChegada -= 1
             time.sleep(0.1)
