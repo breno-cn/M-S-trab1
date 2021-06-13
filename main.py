@@ -11,12 +11,13 @@ def gotoxy(x,y):
     print ("%c[%d;%df" % (0x1B, y, x), end='')
 
 def printTela(totalFila, tempoServico, proximaChegada):
-    for i in range(10):
+    for i in range(100):
         print(' ')
 
     gotoxy(0, 0)
     print(f'clientes na fila: {totalFila}')
-    print(f'tempo de servico restante: {tempoServico}')
+    for tempo in tempoServico:
+        print(f'tempo de servico restante: {tempo}')
     print(f'tempo para proxima chegada: {proximaChegada}')
 
 def getArgs():
@@ -90,16 +91,18 @@ def main():
 
                 continue
 
+            i = 0
             for tempoProximoServico in temposProximosServicos:
                 if tempoProximoServico == 0 and not fila.vazia():
                     ticksServico += 1
 
                     servido = fila.removeCliente()
-                    tempoProximoServico = servido.tmpEsperaServico
+                    temposProximosServicos[i] = servido.tmpEsperaServico
 
                     tempoTotalEntidadesFila += servido.tmpEsperaFila
 
                     tempoTotalOcupacaoServidores += servido.tmpEsperaServico
+                i += 1
 
             for cliente in fila.fila:
                 cliente.avancaTempoFila()
@@ -112,7 +115,7 @@ def main():
 
             proximaChegada -= 1
             time.sleep(0.1)
-            printTela(len(fila.fila), tempoProximoServico, proximaChegada)
+            printTela(len(fila.fila), temposProximosServicos, proximaChegada)
             ticks += 1
 
         except KeyboardInterrupt:
